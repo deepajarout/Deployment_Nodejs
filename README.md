@@ -50,7 +50,11 @@ To install the LTS release, use this PPA
 
 ---
 
-##
+## Clone the Repository
+
+* ```git clone <Repository Path> ```
+
+---
 
 
 
