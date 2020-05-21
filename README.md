@@ -56,5 +56,17 @@ To install the LTS release, use this PPA
 
 ---
 
+# Test Application
+
+* test your application, run app.js with the following command:
+``` node app.js or npm start ```
+* Once you have confirmed the application is working, kill the application with CTRL+C.
+
+# Install & Configure PM2
+
+**Install PM2**```sudo npm install -g pm2```
+* ```pm2 start <your application starting file name where you defining your port> default app it should be pm2 start ./bin/www ```
+
+
 
 
