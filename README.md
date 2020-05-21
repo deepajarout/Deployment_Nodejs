@@ -64,22 +64,39 @@ To install the LTS release, use this PPA
 
 # Install & Configure PM2
 
-*```sudo npm install -g pm2```
+* ```sudo npm install -g pm2```
 * ```sudo pm2 start /path/<your application starting file name where you defining your port> default app it should be sudo pm2 start /application path/./bin/www ```
-* check using ``` <your puplic ip>:<your application port> in your browser. your application is running.
+* check using 
+``` <your puplic ip>:<your application port>``` in your browser. your application is running.
 
 
 # Install nginx
+
 Since this is our first interaction with the apt packaging system in this session, we will update our local package index so that we have access to the most recent package listings
-*```sudo apt-get update```
-*```sudo apt-get install nginx```
+* ```sudo apt-get update```
+* ```sudo apt-get install nginx```
 * check in your browser enter <your puplic ip> you will get Welcome to nginx screen
 
 
 # Set Up Nginx as a Reverse Proxy
 
+Now that your application is running and listening on localhost, you need to make it so people from the outside world can access it. To achieve this, we will use Nginx as a reverse proxy.
+* First, you need to update the ```/etc/nginx/sites-available/default``` configuration file. 
+Open the file with this command:
+``` cd /etc/nginx/sites-available ```
+ ``` sudo vi default```
+**OR**
+* instead of this you can also use nano command for open your configuration file: 
+```sudo nano /etc/nginx/sites-available/default```
 
-
-
-
-
+* Within the server block, find the location / section. Replace the contents of the block with the following configuration:
+```
+location / {
+proxy_pass http://localhost:**<your port number>**;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection 'upgrade';
+proxy_set_header Host $host;
+proxy_cache_bypass $http_upgrade;
+}
+```
