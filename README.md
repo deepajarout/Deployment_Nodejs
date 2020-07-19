@@ -123,3 +123,5 @@ proxy_set_header Host $host;
 proxy_cache_bypass $http_upgrade;
 }
 ```
+* ```sudo nginx -t```  checking error
+* ``` sudo systemctl restart nginx ```
